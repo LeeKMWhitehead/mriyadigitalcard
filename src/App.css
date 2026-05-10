@@ -1,0 +1,6 @@
+/* 줄 바꿈(\n)을 화면에 반영하기 위한 스타일 */
+.card-item-label {
+  white-space: pre-wrap;
+  display: block; /* 텍스트가 아이콘 옆이나 아래에서 적절히 배치되도록 설정 */
+  line-height: 1.4; /* 줄 간격이 너무 좁지 않게 조절 */
+}
