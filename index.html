@@ -1,10 +1,20 @@
 <!doctype html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/mriyadigitalcard/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>mgpceonamecard</title>
+    <title>Mriya Global Partners</title>
+    
+    <script type="text/javascript">
+      (function() {
+        var redirect = sessionStorage.getItem('redirect');
+        if (redirect) {
+          sessionStorage.removeItem('redirect');
+          window.history.replaceState(null, null, redirect);
+        }
+      })();
+    </script>
     <script type="module" crossorigin src="/mriyadigitalcard/assets/index-DnFZ88WP.js"></script>
     <link rel="stylesheet" crossorigin href="/mriyadigitalcard/assets/index-x1XGuNl0.css">
   </head>
