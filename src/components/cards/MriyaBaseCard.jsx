@@ -71,14 +71,10 @@ const MriyaBaseCard = () => {
         boxShadow: '0 25px 50px rgba(0, 0, 0, 0.3)',
         textAlign: 'center'
       }}>
-
-
-
-
         <header>
           <div style={{
             fontSize: '1.3rem',
-            color: '#E0E6ED', // 플래티넘 실버
+            color: '#E0E6ED',
             letterSpacing: '3px',
             fontWeight: '900',
             marginBottom: '28px',
@@ -124,14 +120,15 @@ const MriyaBaseCard = () => {
             </div>
 
             <div style={{
-              color: 'rgba(255, 255, 255, 0.85)',
+              color: 'rgba(255, 255, 255, 0.95)',
               fontSize: '0.9rem',
-              fontWeight: '300',
+              fontWeight: '600',
               lineHeight: '1.5',
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
-              flexWrap: 'wrap' // 모바일에서 너무 길면 자연스럽게 줄바꿈
+              flexWrap: 'wrap',
+              textShadow: `0px 2px 4px rgba(0, 0, 0, 0.8), 0px 0px 10px rgba(0, 0, 0, 0.5)`
             }}>
               <span>{data.roleInfo.field}</span>
               <span style={{ margin: '0 8px', opacity: 0.5 }}>|</span>
@@ -140,6 +137,7 @@ const MriyaBaseCard = () => {
           </div>
         </header>
 
+        {/* 버튼 리스트 영역: 중복 div를 제거하고 하나로 통합 */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
           {data.items.map((item, idx) => (
             <a
@@ -150,35 +148,69 @@ const MriyaBaseCard = () => {
                 alignItems: 'center',
                 gap: '18px',
                 padding: '18px 22px',
-                backgroundColor: 'rgba(255, 255, 255, 0.18)',
+                backgroundColor: 'rgba(255, 255, 255, 0.12)',
                 borderRadius: '22px',
-                border: '1px solid rgba(255, 255, 255, 0.35)',
+                borderTop: '1px solid rgba(255, 255, 255, 0.3)',
+                borderLeft: '1px solid rgba(255, 255, 255, 0.3)',
+                borderBottom: '1px solid rgba(0, 0, 0, 0.2)',
+                borderRight: '1px solid rgba(0, 0, 0, 0.2)',
                 textDecoration: 'none',
                 cursor: 'pointer',
                 boxShadow: '0 8px 20px rgba(0, 0, 0, 0.15)',
                 transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.3)';
+                e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.25)';
                 e.currentTarget.style.transform = 'translateY(-3px) scale(1.02)';
+                e.currentTarget.style.boxShadow = `0 12px 30px ${item.color}33`;
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.18)';
+                e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.12)';
                 e.currentTarget.style.transform = 'translateY(0) scale(1)';
+                e.currentTarget.style.boxShadow = '0 8px 20px rgba(0, 0, 0, 0.15)';
               }}
             >
-              <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '30px', height: '30px' }}>
+              <span style={{ 
+                display: 'flex', 
+                alignItems: 'center', 
+                justifyContent: 'center', 
+                width: '32px', 
+                height: '32px',
+                filter: `drop-shadow(0px 0px 6px ${item.color}cc)` 
+              }}>
                 <img src={item.icon} alt={item.label} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
               </span>
+
               <span style={{
-                color: '#fff',
-                fontSize: '0.95rem',
-                fontWeight: '500',
-                whiteSpace: 'pre-wrap',
+                display: 'flex',
+                flexDirection: 'column',
                 textAlign: 'left',
-                lineHeight: '1.3'
+                gap: '2px'
               }}>
-                {item.label}
+                <span style={{
+                  color: 'rgba(255, 255, 255, 0.8)',
+                  fontSize: '0.8rem',
+                  fontWeight: '500',
+                  letterSpacing: '0.5px'
+                }}>
+                  {item.label.split('\n')[0]}
+                </span>
+                
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <div style={{ width: '2px', height: '12px', backgroundColor: item.color, borderRadius: '2px' }}></div>
+                  <span style={{
+                    color: item.color,
+                    // 핵심 포인트: 흰색을 20% 섞어 원색 느낌을 뺌
+                    fontSize: '1rem',
+                    fontWeight: '800',
+                    letterSpacing: '0.2px',
+                    // 핵심수정: 글로우 효과 최소화 및 선명도 강화
+                    textShadow: `0px 0px 1px rgba(255, 255, 255, 0.3), /* 글자 테두리를 아주 얇게 잡아줌 */
+                    0px 1px 2px rgba(0, 0, 0, 0.7) /* 어두운 그림자를 깔아 배경과 분리 */` 
+                  }}>
+                    {item.label.split('\n')[1] || item.label}
+                  </span>
+                </div>
               </span>
             </a>
           ))}
